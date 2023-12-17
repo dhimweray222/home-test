@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Task {
+  id: ID!
+  name: String!
+  bookings: [Booking!]!
+}
+
+type Booking {
+  id: ID!
+  title: String!
+  booking_date: DateTime!
+  user: String!
+  task: Task!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  bookings: [Booking!]!
+  bookingsByTaskId(taskId: String!): [Booking!]!
+  bookingsByUser(user: String!): [Booking!]!
+  tasks: [Task!]!
+}
+
+type Mutation {
+  createBooking(title: String!, taskId: String!, user: String!, booking_date: String!): Booking!
+  cancelBooking(bookingId: String!): Booking!
+  createTask(name: String!): Task!
+}
